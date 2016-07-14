@@ -2,6 +2,8 @@
 
 Runs a Behat-based test suite against a given branch of the [Pantheon WordPress upstream](https://github.com/pantheon-systems/wordpress) on [Pantheon](https://pantheon.io/) infrastructure to ensure the branch is fully functional on Pantheon.
 
+[![CircleCI](https://circleci.com/gh/danielbachhuber/pantheon-wordpress-upstream.svg?style=svg)](https://circleci.com/gh/danielbachhuber/pantheon-wordpress-upstream)
+
 ## How It Works
 
 The purpose of this repository is to ensure a given branch of the Pantheon WordPress Upstream is fully functional on Pantheon infrastructure. This is used as a part of Pantheon's automated WordPress updating process.
