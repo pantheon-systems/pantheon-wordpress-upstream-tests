@@ -2,7 +2,7 @@
 
 Runs a Behat-based test suite against a given branch of the [Pantheon WordPress upstream](https://github.com/pantheon-systems/wordpress) on [Pantheon](https://pantheon.io/) infrastructure to ensure the branch is fully functional on Pantheon.
 
-[![CircleCI](https://circleci.com/gh/danielbachhuber/pantheon-wordpress-upstream.svg?style=svg)](https://circleci.com/gh/danielbachhuber/pantheon-wordpress-upstream)
+[![CircleCI](https://circleci.com/gh/pantheon-systems/pantheon-wordpress-upstream.svg?style=svg)](https://circleci.com/gh/pantheon-systems/pantheon-wordpress-upstream)
 
 ## How It Works
 
@@ -17,10 +17,10 @@ On a high level, here's how it works:
  * `TERMINUS_ENV` - A unique name for the multidev branch to be created, to prevent collisions between jobs.
 3. CircleCI installs [Terminus](https://pantheon.io/docs/terminus/), an interface for programmatically interacting with Pantheon.
 4. The test suite runs in three steps:
- 1. [`prepare.sh`](https://github.com/danielbachhuber/pantheon-wordpress-upstream/blob/master/prepare.sh) - Prepares the Pantheon site environment to have the test suite run against it. Preparation includes:
+ 1. [`prepare.sh`](https://github.com/pantheon-systems/pantheon-wordpress-upstream/blob/master/prepare.sh) - Prepares the Pantheon site environment to have the test suite run against it. Preparation includes:
     * Creating the site environment using Terminus.
- 2. [`test.sh`](https://github.com/danielbachhuber/pantheon-wordpress-upstream/blob/master/test.sh) - Runs the Behat test suite against the created environment.
- 3. [`cleanup.sh`](https://github.com/danielbachhuber/pantheon-wordpress-upstream/blob/master/cleanup.sh) - Cleans up after the test suite has completed. Cleanup includes:
+ 2. [`test.sh`](https://github.com/pantheon-systems/pantheon-wordpress-upstream/blob/master/test.sh) - Runs the Behat test suite against the created environment.
+ 3. [`cleanup.sh`](https://github.com/pantheon-systems/pantheon-wordpress-upstream/blob/master/cleanup.sh) - Cleans up after the test suite has completed. Cleanup includes:
     * Deleting the site environment using Terminus.
 
 And that's it!
@@ -46,4 +46,4 @@ Then, you can clone and use the test runner:
 
     tk
 
-Feel free to [open an issue](https://github.com/danielbachhuber/pantheon-wordpress-upstream/issues) with any questions you may have.
+Feel free to [open an issue](https://github.com/pantheon-systems/pantheon-wordpress-upstream/issues) with any questions you may have.
