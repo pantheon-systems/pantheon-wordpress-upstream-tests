@@ -32,7 +32,7 @@ BASH_DIR="$( cd -P "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 ###
 terminus site set-connection-mode --mode=git
 rm -rf $PREPARE_DIR
-git clone -b $TERMINUS_ENV $PANTHEON_GIT_URL $PREPARE_DIR
+# git clone -b $TERMINUS_ENV $PANTHEON_GIT_URL $PREPARE_DIR
 
 ###
 # Push the upstream branch to the environment
