@@ -20,3 +20,7 @@ Feature: Install WordPress through the web UI
   Scenario: Attempting to install WordPress a second time should error
     When I go to "/wp-admin/install.php"
     Then I should see "You appear to have already installed WordPress."
+
+  Scenario: Verify the active theme is Twenty Sixteen
+    When I go to "/"
+    Then the response should contain "<link rel='stylesheet' id='twentysixteen-style-css'"
