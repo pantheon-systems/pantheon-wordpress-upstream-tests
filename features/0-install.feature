@@ -4,6 +4,10 @@ Feature: Install WordPress through the web UI
     When I go to "/"
     Then print current URL
     And I should be on "/wp-admin/install.php"
+
+    When I press "language-continue"
+    Then print current URL
+    And I should be on "/wp-admin/install.php?step=1"
     And I should see "Welcome to the famous five-minute WordPress installation process!"
 
     When I fill in "weblog_title" with "Pantheon WordPress Upstream"
@@ -24,3 +28,30 @@ Feature: Install WordPress through the web UI
   Scenario: Verify the active theme is Twenty Sixteen
     When I go to "/"
     Then the response should contain "<link rel='stylesheet' id='twentysixteen-style-css'"
+
+  Scenario: Delete Akismet and Hello Dolly
+    When I go to "wp-login.php"
+    And I fill in "log" with "pantheon"
+    And I fill in "pwd" with "pantheon"
+    And I press "wp-submit"
+    Then print current URL
+    And I should be on "/wp-admin/"
+
+    When I go to "/wp-admin/plugins.php"
+    Then I should see "2 items" in the ".displaying-num" element
+
+    When I follow "Delete"
+    Then I should see "You are about to remove the following plugin:"
+
+    When I press "submit"
+    Then print current URL
+    And I should see "The selected plugin has been deleted." in the "#message" element
+    And I should see "1 item" in the ".displaying-num" element
+
+    When I follow "Delete"
+    Then I should see "You are about to remove the following plugin:"
+
+    When I press "submit"
+    Then print current URL
+    And I should see "The selected plugin has been deleted." in the "#message" element
+    And I should see "You do not appear to have any plugins available at this time."
