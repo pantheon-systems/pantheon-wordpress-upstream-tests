@@ -37,3 +37,9 @@ rm -rf $PREPARE_DIR
 ###
 # Push the upstream branch to the environment
 ###
+
+
+###
+# Switch to SFTP mode so the site can install plugins and themes
+###
+terminus site set-connection-mode --mode=sftp
