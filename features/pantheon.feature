@@ -22,3 +22,13 @@ Feature: Perform Pantheon-specific actions
     And I press "submit"
     Then I should see "Settings saved."
     And the "pantheon-cache[default_ttl]" field should contain "600"
+
+  Scenario: Clear the site cache
+    When I go to "/wp-admin/options-general.php?page=pantheon-cache"
+    Then I should see "Clear Site Cache"
+    And I should not see "Site cache flushed."
+
+    When I press "Clear Cache"
+    Then print current URL
+    And I should be on "/wp-admin/options-general.php?page=pantheon-cache&cache-cleared=true"
+    And I should see "Site cache flushed." in the ".updated" element
