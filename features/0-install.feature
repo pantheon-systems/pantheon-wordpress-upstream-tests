@@ -32,12 +32,7 @@ Feature: Install WordPress through the web UI
 
   @upstreamonly
   Scenario: Delete Akismet and Hello Dolly
-    When I go to "wp-login.php"
-    And I fill in "log" with "pantheon"
-    And I fill in "pwd" with "pantheon"
-    And I press "wp-submit"
-    Then print current URL
-    And I should be on "/wp-admin/"
+    Given I log in as an admin
 
     When I go to "/wp-admin/plugins.php"
     Then I should see "2 items" in the ".displaying-num" element
