@@ -12,6 +12,6 @@
     "behat/mink-goutte-driver": "^1.2"
   },
   "autoload": {
-    "psr-0": { "PantheonSystems\\PantheonWordPressUpstreamTests\\Behat": "features/bootstrap/" }
+    "psr-4": { "PantheonSystems\\PantheonWordPressUpstreamTests\\Behat": "features/bootstrap/" }
   }
 }
