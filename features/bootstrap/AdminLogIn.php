@@ -27,8 +27,19 @@ class AdminLogIn implements Context, SnippetAcceptingContext {
     {
         $this->minkContext->visit('wp-login.php');
         $this->minkContext->fillField('log', 'pantheon');
-        $this->minkContext->fillField('pwd', 'pantheon');
+        $this->minkContext->fillField('pwd', getenv('WORDPRESS_ADMIN_PASSWORD'));
         $this->minkContext->pressButton('wp-submit');
         $this->minkContext->assertPageAddress("wp-admin/");
+    }
+
+    /**
+     * Fills in form field with specified id|name|label|value
+     * Example: When I fill in "admin_password2" with the command line global variable: "WORDPRESS_ADMIN_PASSWORD"
+     *
+     * @When I fill in :arg1 with the command line global variable: :arg2
+     */
+    public function fillFieldWithGlobal($field, $value)
+    {
+        $this->minkContext->fillField($field, getenv($value));
     }
 }
