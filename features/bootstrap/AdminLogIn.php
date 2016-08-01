@@ -26,7 +26,7 @@ class AdminLogIn implements Context, SnippetAcceptingContext {
     public function ILogInAsAnAdimin()
     {
         $this->minkContext->visit('wp-login.php');
-        $this->minkContext->fillField('log', 'pantheon');
+        $this->minkContext->fillField('log', getenv('WORDPRESS_ADMIN_USERNAME'));
         $this->minkContext->fillField('pwd', getenv('WORDPRESS_ADMIN_PASSWORD'));
         $this->minkContext->pressButton('wp-submit');
         $this->minkContext->assertPageAddress("wp-admin/");
