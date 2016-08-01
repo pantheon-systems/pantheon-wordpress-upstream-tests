@@ -2,7 +2,7 @@
 
 Runs a Behat-based test suite against a given branch of the [Pantheon WordPress upstream](https://github.com/pantheon-systems/wordpress) on [Pantheon](https://pantheon.io/) infrastructure to ensure the branch is fully functional on Pantheon.
 
-[![CircleCI](https://circleci.com/gh/pantheon-systems/pantheon-wordpress-upstream.svg?style=svg)](https://circleci.com/gh/pantheon-systems/pantheon-wordpress-upstream)
+[![CircleCI](https://circleci.com/gh/pantheon-systems/pantheon-wordpress-upstream-tests.svg?style=svg)](https://circleci.com/gh/pantheon-systems/pantheon-wordpress-upstream-tests)
 
 ## How It Works
 
