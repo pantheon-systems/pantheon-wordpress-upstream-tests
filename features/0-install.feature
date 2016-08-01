@@ -1,5 +1,6 @@
 Feature: Install WordPress through the web UI
 
+  @upstreamonly
   Scenario: Install WordPress with the en_US locale
     When I go to "/"
     Then print current URL
@@ -29,6 +30,7 @@ Feature: Install WordPress through the web UI
     When I go to "/"
     Then the response should contain "<link rel='stylesheet' id='twentysixteen-style-css'"
 
+  @upstreamonly
   Scenario: Delete Akismet and Hello Dolly
     When I go to "wp-login.php"
     And I fill in "log" with "pantheon"
