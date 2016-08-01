@@ -8,6 +8,7 @@ Feature: Manage WordPress plugins
     Then print current URL
     And I should be on "/wp-admin/"
 
+  @upstreamonly
   Scenario: Install, activate, deactivate, and delete a plugin
     When I go to "/wp-admin/plugin-install.php?tab=search&s=hello+dolly"
     And I follow "Hello Dolly"
