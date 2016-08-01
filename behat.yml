@@ -6,7 +6,7 @@ default:
         - features
       contexts:
         - Behat\MinkExtension\Context\MinkContext
-        - AdminLogIn
+        - PantheonSystems\PantheonWordPressUpstreamTests\Behat\AdminLogIn
   extensions:
     Behat\MinkExtension:
       # base_url set by ENV
