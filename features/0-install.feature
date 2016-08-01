@@ -12,7 +12,7 @@ Feature: Install WordPress through the web UI
     And I should see "Welcome to the famous five-minute WordPress installation process!"
 
     When I fill in "weblog_title" with "Pantheon WordPress Upstream"
-    And I fill in "user_name" with "pantheon"
+    And I fill in "user_name" with the command line global variable: "WORDPRESS_ADMIN_USERNAME"
     And I fill in "admin_password" with the command line global variable: "WORDPRESS_ADMIN_PASSWORD"
     And I fill in "admin_password2" with the command line global variable: "WORDPRESS_ADMIN_PASSWORD"
     And I check "pw_weak"
