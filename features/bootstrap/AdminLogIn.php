@@ -23,7 +23,7 @@ class AdminLogIn implements Context, SnippetAcceptingContext {
     /**
      * @Given I log in as an admin
      */
-    public function ILogInAsAnAdimin()
+    public function ILogInAsAnAdmin()
     {
         $this->minkContext->visit('wp-login.php');
         $this->minkContext->fillField('log', 'pantheon');
