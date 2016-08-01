@@ -6,6 +6,7 @@ default:
         - features
       contexts:
         - Behat\MinkExtension\Context\MinkContext
+        - AdminLogIn
   extensions:
     Behat\MinkExtension:
       # base_url set by ENV
