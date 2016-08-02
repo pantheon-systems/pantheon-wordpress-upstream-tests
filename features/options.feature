@@ -1,12 +1,7 @@
 Feature: Manage WordPress options
 
   Background:
-    Given I am on "wp-login.php"
-    And I fill in "log" with "pantheon"
-    And I fill in "pwd" with "pantheon"
-    And I press "wp-submit"
-    Then print current URL
-    And I should be on "/wp-admin/"
+    Given I log in as an admin
 
   Scenario: Update the site tagline
     When I go to "/"

@@ -16,12 +16,7 @@ Feature: Manage WordPress comments
     And I should see "Pantheon logged-out test comment"
 
   Scenario: Leave a comment logged-in
-    Given I am on "wp-login.php"
-    And I fill in "log" with "pantheon"
-    And I fill in "pwd" with "pantheon"
-    And I press "wp-submit"
-    Then print current URL
-    And I should be on "/wp-admin/"
+    Given I log in as an admin
 
     When I go to "/hello-world/"
     Then print current URL
@@ -35,12 +30,7 @@ Feature: Manage WordPress comments
     And I should see "Pantheon logged-in test comment"
 
   Scenario: View comments in the backend
-  	Given I am on "wp-login.php"
-    And I fill in "log" with "pantheon"
-    And I fill in "pwd" with "pantheon"
-    And I press "wp-submit"
-    Then print current URL
-    And I should be on "/wp-admin/"
+    Given I log in as an admin
 
     When I go to "/wp-admin/edit-comments.php"
     Then print current URL
