@@ -21,37 +21,17 @@ class AdminLogIn implements Context, SnippetAcceptingContext {
     {
         $environment = $scope->getEnvironment();
         $this->minkContext = $environment->getContext('Behat\MinkExtension\Context\MinkContext');
-    }
-
+    }    
+    
     /**
      * @Given I log in as an admin
      */
     public function ILogInAsAnAdmin()
     {
-
-        echo ("
-username:
-        ");
-        echo (getenv('WORDPRESS_ADMIN_USERNAME'));
-
-
-        echo ("
-password:
-        ");
-        echo (getenv('WORDPRESS_ADMIN_PASSWORD'));
-        echo ("
-
-
-
-
-
-        ");
         $this->minkContext->visit('wp-login.php');
         $this->minkContext->fillField('log', getenv('WORDPRESS_ADMIN_USERNAME'));
         $this->minkContext->fillField('pwd', getenv('WORDPRESS_ADMIN_PASSWORD'));
         $this->minkContext->pressButton('wp-submit');
-        $this->minkContext->printLastResponse();
-
         $this->minkContext->assertPageAddress("wp-admin/");
     }
 
