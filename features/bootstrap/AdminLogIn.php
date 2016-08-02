@@ -1,5 +1,8 @@
 <?php
 
+
+namespace PantheonSystems\PantheonWordPressUpstreamTests\Behat;
+
 use Behat\Behat\Context\Context;
 use Behat\Behat\Context\SnippetAcceptingContext;
 use Behat\MinkExtension\Context\MinkContext;
