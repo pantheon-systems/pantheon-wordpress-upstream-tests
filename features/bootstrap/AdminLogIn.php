@@ -21,8 +21,8 @@ class AdminLogIn implements Context, SnippetAcceptingContext {
     {
         $environment = $scope->getEnvironment();
         $this->minkContext = $environment->getContext('Behat\MinkExtension\Context\MinkContext');
-    }    
-    
+    }
+
     /**
      * @Given I log in as an admin
      */
