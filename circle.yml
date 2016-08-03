@@ -11,11 +11,13 @@ machine:
     # in this step, it would result in a different password being used in each
     # line of other steps. Each CircleCI command runs in a separate shell.
     WORDPRESS_ADMIN_PASSWORD: $(cat ~/WORDPRESS_ADMIN_PASSWORD)
+    BEHAT_PARAMS: "{\"extensions\" : {\"Behat\\MinkExtension\" : {\"base_url\" : \"http://$TERMINUS_ENV-$TERMINUS_SITE.pantheonsite.io\"} }}"
 
 dependencies:
   cache_directories:
     - ~/.composer/cache
   pre:
+    - echo $BEHAT_PARAMS
     # The environment step uses this file to set a global variable.
     - echo $(openssl rand -hex 8) > ~/WORDPRESS_ADMIN_PASSWORD
     # Set the PHP timezone so that Behat script does not fail.
