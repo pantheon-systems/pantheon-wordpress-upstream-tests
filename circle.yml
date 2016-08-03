@@ -33,6 +33,6 @@ test:
   pre:
     - ./prepare.sh
   override:
-    - ./test.sh
+    - ./vendor/bin/behat
   post:
     - ./cleanup.sh
