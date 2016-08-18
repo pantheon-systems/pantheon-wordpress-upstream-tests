@@ -6,9 +6,9 @@
 # such that it can be run a second time if a step fails.
 ###
 
-./check-required.sh
-
 set -ex
+
+./check-required.sh
 
 ###
 # Create a new environment for this particular test run.

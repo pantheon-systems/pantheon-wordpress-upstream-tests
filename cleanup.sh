@@ -1,8 +1,8 @@
 #!/bin/bash
 
-./check-required.sh
-
 set -ex
+
+./check-required.sh
 
 ###
 # Delete the environment used for this test run.
