@@ -2,10 +2,7 @@
 
 set -ex
 
-if [ -z "$TERMINUS_SITE" ] || [ -z "$TERMINUS_ENV" ]; then
-	echo "TERMINUS_SITE and TERMINUS_ENV environment variables must be set"
-	exit 1
-fi
+./check-required.sh
 
 ###
 # Delete the environment used for this test run.
