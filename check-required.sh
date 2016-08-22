@@ -1,7 +1,8 @@
 #!/bin/bash
 
-# Exit immediately, but don't expose any environment variable values
+# Don't expose any environment variable values; permit later exit
 set +x
+set +e
 
 if [ -z "$TERMINUS_SITE" ] || [ -z "$TERMINUS_ENV" ]; then
 	echo "TERMINUS_SITE and TERMINUS_ENV environment variables must be set"
@@ -20,3 +21,5 @@ if [ $? -ne 0 ]; then
 	echo "Terminus unauthenticated; assuming unauthenticated build"
 	exit 0
 fi
+
+exit 0
