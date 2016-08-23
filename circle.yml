@@ -31,6 +31,6 @@ test:
   pre:
     - ./prepare.sh
   override:
-    - ./test.sh
+    - ./test.sh --strict
   post:
     - ./cleanup.sh
