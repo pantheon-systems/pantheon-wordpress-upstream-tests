@@ -44,6 +44,14 @@ First, make sure Terminus is installed and authenticated:
 
 Then, you can clone and use the test runner:
 
-    tk
+    git clone git@github.com:pantheon-systems/pantheon-wordpress-upstream-tests.git
+    cd pantheon-wordpress-upstream-tests
+    export TERMINUS_SITE=wordpress-upstream
+    export TERMINUS_ENV=test-1
+    export WORDPRESS_ADMIN_USERNAME=pantheon
+    export WORDPRESS_ADMIN_PASSWORD="$(openssl rand -hex 8)"
+    ./prepare.sh
+    ./test.sh
+    ./cleanup.sh
 
 Feel free to [open an issue](https://github.com/pantheon-systems/pantheon-wordpress-upstream/issues) with any questions you may have.
