@@ -27,24 +27,6 @@ class ResponseHeader extends RawMinkContext {
     }
 
     /**
-     * Checks that the current page response header is set
-     *
-     * @Then /^the response header "(?P<name>(?:[^"]|\\")*)" should exist$/
-     */
-    public function assertResponseHeaderExists($name) {
-        $this->assertSession()->responseHeaderMatches($name,'/^.{1,}$/');
-    }
-
-    /**
-     * Checks that the current page response header is not set
-     *
-     * @Then /^the response header "(?P<name>(?:[^"]|\\")*)" should not exist$/
-     */
-    public function assertResponseHeaderNotExists($name) {
-        $this->assertSession()->responseHeaderMatches($name,'/^.{0}$/');
-    }
-
-    /**
      * Checks, that current page response header contains specified value.
      *
      * @Then /^the response header "(?P<name>(?:[^"]|\\")*)" should contain "(?P<value>(?:[^"]|\\")*)"$/
