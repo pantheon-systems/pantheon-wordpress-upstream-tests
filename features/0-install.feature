@@ -19,8 +19,8 @@ Feature: Install WordPress through the web UI
     And I fill in "admin_email" with "wordpress-upstream@getpantheon.com"
     And I press "submit"
     Then print current URL
-    And I should be on "/wp-admin/install.php?step=2"
-    And I should see "WordPress has been installed."
+    And I should be on "/wp-admin/"
+    And I should see "Welcome to WordPress!"
 
   Scenario: Attempting to install WordPress a second time should error
     When I go to "/wp-admin/install.php"
