@@ -3,7 +3,7 @@ Feature: Manage WordPress comments
   Scenario: Leave a comment logged-out
     When I go to "/hello-world/"
     Then print current URL
-    And I should see "1 thought on “Hello world!”" in the "h2.comments-title" element
+    And I should see "One Reply to “Hello world!”" in the "h2.comments-title" element
     And I should see "Leave a Reply"
 
     When I fill in "comment" with "Pantheon logged-out test comment"
@@ -11,7 +11,7 @@ Feature: Manage WordPress comments
     And I fill in "email" with "noreply@getpantheon.com"
     And I press "submit"
     Then print current URL
-    And I should see "1 thought on “Hello world!”" in the "h2.comments-title" element
+    And I should see "One Reply to “Hello world!”" in the "h2.comments-title" element
     And I should see "Your comment is awaiting moderation."
     And I should see "Pantheon logged-out test comment"
 
@@ -20,7 +20,7 @@ Feature: Manage WordPress comments
 
     When I go to "/hello-world/"
     Then print current URL
-    And I should see "1 thought on “Hello world!”" in the "h2.comments-title" element
+    And I should see "One Reply to “Hello world!”" in the "h2.comments-title" element
     And I should see "Leave a Reply"
 
     When I fill in "comment" with "Pantheon logged-in test comment"
