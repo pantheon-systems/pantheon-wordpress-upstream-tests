@@ -21,7 +21,7 @@ Feature: Install WordPress through the web UI
     Then print current URL
     And I should be on "/wp-admin/install.php?step=2"
     And I should see "WordPress has been installed."
-    And I press "Log In"
+    And I follow "Log In"
     And I fill in "Username or Email Address" with the command line global variable: "WORDPRESS_ADMIN_USERNAME"
     And I fill in "Password" with the command line global variable: "WORDPRESS_ADMIN_PASSWORD"
     And I press "Log In"
