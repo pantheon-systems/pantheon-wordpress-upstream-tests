@@ -43,3 +43,8 @@ rm -rf $PREPARE_DIR
 # Switch to SFTP mode so the site can install plugins and themes
 ###
 terminus site set-connection-mode --mode=sftp
+
+###
+# Install the WordPress importer to run importer tests
+###
+terminus wp -- plugin install wordpress-importer --activate
