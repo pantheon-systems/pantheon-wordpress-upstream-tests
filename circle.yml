@@ -27,6 +27,9 @@ dependencies:
     - composer install
     - terminus auth login --machine-token=$TERMINUS_TOKEN
 
+
+
+
 test:
   pre:
     - ./prepare.sh
