@@ -33,4 +33,4 @@ test:
   override:
     - ./test.sh --strict
   post:
-    - ./cleanup.sh
+    # - ./cleanup.sh
