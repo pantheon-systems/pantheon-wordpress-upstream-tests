@@ -19,7 +19,7 @@ Feature: Install WordPress through the web UI
     And I fill in "admin_email" with "wordpress-upstream@getpantheon.com"
     And I press "submit"
     Then print current URL
-    And I should be on "/wp-admin/install.php?step=2"
+    And I should be on "/wp-admin/"
     And I should see "WordPress has been installed."
     And I follow "Log In"
     And I fill in "Username or Email Address" with the command line global variable: "WORDPRESS_ADMIN_USERNAME"
