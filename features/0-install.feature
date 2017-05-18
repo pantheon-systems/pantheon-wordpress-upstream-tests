@@ -2,7 +2,7 @@ Feature: Install WordPress through the web UI
 
   @upstreamonly
   Scenario: Install WordPress with the en_US locale
-    When I go to "/?qwerqwe"
+    When I go to "/"
     Then print current URL
     And I should be on "/wp-admin/install.php"
 
