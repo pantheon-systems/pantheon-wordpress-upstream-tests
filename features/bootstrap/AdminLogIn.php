@@ -5,7 +5,7 @@ namespace PantheonSystems\PantheonWordPressUpstreamTests\Behat;
 
 use Behat\Behat\Context\Context;
 use Behat\Behat\Context\SnippetAcceptingContext;
-use Behat\MinkExtension\Context\MinkContext;
+#use Behat\MinkExtension\Context\MinkContext;
 use Behat\Behat\Hook\Scope\BeforeScenarioScope;
 
 /**
@@ -20,7 +20,7 @@ class AdminLogIn implements Context, SnippetAcceptingContext {
     public function gatherContexts(BeforeScenarioScope $scope)
     {
         $environment = $scope->getEnvironment();
-        $this->minkContext = $environment->getContext('Behat\MinkExtension\Context\MinkContext');
+        $this->minkContext = $environment->getContext('PantheonSystems\PantheonWordPressUpstreamTests\Behat\MinkContext');
     }
 
     /**
