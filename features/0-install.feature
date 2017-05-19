@@ -6,7 +6,7 @@ Feature: Install WordPress through the web UI
     Then print current URL
     And I should be on "/wp-admin/install.php"
 
-    #When I press "language-continue"
+    When I press "language-continue"
     Then print current URL
     And I should be on "/wp-admin/install.php?step=1"
     And I should see "Welcome to the famous five-minute WordPress installation process!"
@@ -19,8 +19,13 @@ Feature: Install WordPress through the web UI
     And I fill in "admin_email" with "wordpress-upstream@getpantheon.com"
     And I press "submit"
     Then print current URL
-#    And I should be on "/wp-admin/"
-  #  And I should see "Welcome to WordPress!"
+    And I should be on "/wp-admin/install.php?step=2"
+    And I should see "WordPress has been installed."
+    And I follow "Log In"
+    And I fill in "Username or Email Address" with the command line global variable: "WORDPRESS_ADMIN_USERNAME"
+    And I fill in "Password" with the command line global variable: "WORDPRESS_ADMIN_PASSWORD"
+    And I press "Log In"
+    And I should see "Welcome to WordPress!"
 
   Scenario: Attempting to install WordPress a second time should error
     When I go to "/wp-admin/install.php"
@@ -30,4 +35,25 @@ Feature: Install WordPress through the web UI
     When I go to "/"
     Then the response should contain "<link rel='stylesheet' id='twentyseventeen-style-css'"
 
+  @upstreamonly
+  Scenario: Delete Akismet and Hello Dolly
+    Given I log in as an admin
 
+    When I go to "/wp-admin/plugins.php"
+    Then I should see "2 items" in the ".displaying-num" element
+
+    When I follow "Delete"
+    Then I should see "You are about to remove the following plugin:"
+
+    When I press "submit"
+    Then print current URL
+    And I should see "The selected plugin has been deleted." in the "#message" element
+    And I should see "1 item" in the ".displaying-num" element
+
+    When I follow "Delete"
+    Then I should see "You are about to remove the following plugin:"
+
+    When I press "submit"
+    Then print current URL
+    And I should see "The selected plugin has been deleted." in the "#message" element
+    And I should see "You do not appear to have any plugins available at this time."
