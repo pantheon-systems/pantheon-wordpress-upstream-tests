@@ -1,7 +1,7 @@
 Feature: Manage WordPress comments
 
   Scenario: Leave a comment logged-out
-    When I go to "/hello-world/"
+    When I go to "/../hello-world/"
     Then print current URL
     And I should see "One Reply to “Hello world!”" in the "h2.comments-title" element
     And I should see "Leave a Reply"
@@ -18,7 +18,7 @@ Feature: Manage WordPress comments
   Scenario: Leave a comment logged-in
     Given I log in as an admin
 
-    When I go to "/hello-world/"
+    When I go to "/../hello-world/"
     Then print current URL
     And I should see "One Reply to “Hello world!”" in the "h2.comments-title" element
     And I should see "Leave a Reply"
