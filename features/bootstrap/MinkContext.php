@@ -1,13 +1,5 @@
 <?php
 
-/*
- * This file is part of the Behat MinkExtension.
- * (c) Konstantin Kudryashov <ever.zet@gmail.com>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 namespace PantheonSystems\PantheonWordPressUpstreamTests\Behat;
 
 use Behat\Behat\Context\TranslatableContext;
@@ -35,6 +27,4 @@ class MinkContext extends BehatMinkContext {
     }
     return rtrim($url, '/') . '/' . ltrim($path, '/');
   }
-
-
 }
