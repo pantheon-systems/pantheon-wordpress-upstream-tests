@@ -20,7 +20,7 @@ class AdminLogIn implements Context, SnippetAcceptingContext {
     public function gatherContexts(BeforeScenarioScope $scope)
     {
         $environment = $scope->getEnvironment();
-        $this->minkContext = $environment->getContext('Behat\MinkExtension\Context\MinkContext');
+        $this->minkContext = $environment->getContext('PantheonSystems\PantheonWordPressUpstreamTests\Behat\MinkContext');
     }
 
     /**
