@@ -17,77 +17,24 @@ use Behat\MinkExtension\Context\MinkContext as BehatMinkContext;
 
 class MinkContext extends BehatMinkContext {
 
-
-    protected function detectRelocatedPage($page) {
-
-      return FALSE;
-
-      $page = ltrim($page, "/");
-      $redirectable_paths = [
-        'wp-admin',
-        'wp-login.php'
-      ];
-
-
-        print_r("
-
-$page
-
-          ");
-
-        foreach($redirectable_paths as $redirectable_path) {
-          print_r($redirectable_path);
-          print_r("
-
-          ");
-
-          if (strpos($page, $redirectable_path) === 0) {
-              return TRUE;
-          }
-
-      }
-
-
+  /**
+   * Build URL, based on provided path.
+   *
+   * @param string $path Relative or absolute URL.
+   * @return string
+   */
+  public function locatePath($path)
+  {
+    if (strtolower(substr($path, 0, '4')) === 'http') {
+      return $path;
     }
-
-    public function assertPageAddress($page)
-    {
-
-        print_r($page);
-
-
-        if ($this->detectRelocatedPage($page)) {
-            $page = '/wp/' . ltrim($page, "/");
-        }
-
-
-
-
-
-
-
-
-      $this->assertSession()->addressEquals($this->locatePath($page));
+    $ext = pathinfo($path, PATHINFO_EXTENSION);
+    $url = $this->getMinkParameter('base_url');
+    if (strpos($path, 'wp-admin') !== false || in_array($ext, ['htm', 'html', 'md', 'php', 'txt'], true)) {
+      $url = $url . 'wp';
     }
+    return rtrim($url, '/') . '/' . ltrim($path, '/');
+  }
 
-
-    public function visit($page)
-    {
-
-      if ($this->detectRelocatedPage($page)) {
-
-
-            print_r("
-asdf
-
-        ");
-
-            $this->visitPath('/wp/' . $page);
-        } else {
-            $this->visitPath($page);
-        }
-
-
-    }
 
 }
