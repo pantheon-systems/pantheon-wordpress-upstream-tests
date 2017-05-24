@@ -6,8 +6,8 @@ Feature: Manage WordPress options
   Scenario: Update the site tagline
     When I go to "/"
 
-#    Then I should see "Just another WordPress site" in the ".site-description" element
- #   And I should not see "Pantheon upstream testing site" in the ".site-description" element
+    Then I should see "Just another WordPress site" in the ".site-description" element
+    And I should not see "Pantheon upstream testing site" in the ".site-description" element
 
     When I go to "/wp-admin/options-general.php"
     Then print current URL
