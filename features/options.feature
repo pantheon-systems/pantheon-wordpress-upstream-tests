@@ -10,7 +10,6 @@ Feature: Manage WordPress options
     And I should not see "Pantheon upstream testing site" in the ".site-description" element
 
     When I go to "/wp-admin/options-general.php"
-    Then print current URL
     And I fill in "blogdescription" with "Pantheon upstream testing site"
     And I press "submit"
     Then I should see "Settings saved."
