@@ -22,7 +22,7 @@ class MinkContext extends BehatMinkContext {
     }
     $ext = pathinfo($path, PATHINFO_EXTENSION);
     $url = $this->getMinkParameter('base_url');
-    if (!empty(getenv(RELOCATED_WP_ADMIN)) && (strpos($path, 'wp-admin') !== false || in_array($ext, ['htm', 'html', 'md', 'php', 'txt'], true))) {
+    if (!empty(getenv('RELOCATED_WP_ADMIN')) && (strpos($path, 'wp-admin') !== false || in_array($ext, ['htm', 'html', 'md', 'php', 'txt'], true))) {
       $url = $url . 'wp';
     }
     return rtrim($url, '/') . '/' . ltrim($path, '/');
