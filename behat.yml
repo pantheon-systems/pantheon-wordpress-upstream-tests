@@ -5,7 +5,7 @@ default:
       paths:
         - features
       contexts:
-        - PantheonSystems\PantheonWordPressUpstreamTests\Behat\MinkContext
+        - Behat\MinkExtension\Context\MinkContext
         - PantheonSystems\PantheonWordPressUpstreamTests\Behat\AdminLogIn
         - PantheonSystems\PantheonWordPressUpstreamTests\Behat\ResponseHeader
   extensions:
