@@ -23,7 +23,7 @@ class AdminLogIn implements Context, SnippetAcceptingContext {
         $contexts = $environment->getContexts();
         foreach($contexts as $context) {
           if (is_a($context, 'Behat\MinkExtension\Context\MinkContext')) {
-              $this->minkContext = $environment->getContext($context);
+              $this->minkContext = $context;
           }
         }
     }
