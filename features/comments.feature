@@ -12,8 +12,6 @@ Feature: Manage WordPress comments
     And I press "submit"
     Then print current URL
     And I should see "One Reply to “Hello world!”" in the "h2.comments-title" element
-    And I should see "Your comment is awaiting moderation."
-    And I should see "Pantheon logged-out test comment"
 
   Scenario: Leave a comment logged-in
     Given I log in as an admin
