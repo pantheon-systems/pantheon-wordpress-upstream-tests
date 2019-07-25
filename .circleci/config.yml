@@ -19,7 +19,7 @@ jobs:
     working_directory: ~/pantheon-systems/wordpress-upstream
     parallelism: 1
     docker:
-    - image: circleci/php:5.6
+    - image: circleci/php:7.1
     steps:
     - checkout
     - run: |
