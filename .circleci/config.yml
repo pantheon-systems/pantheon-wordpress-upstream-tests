@@ -52,5 +52,5 @@ jobs:
     - run: ./prepare.sh
     - run: ./test.sh --strict
     - run:
-      command: ./cleanup.sh
-      when: always
+        command: ./cleanup.sh
+        when: always
