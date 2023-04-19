@@ -47,6 +47,15 @@ rm -rf $PREPARE_DIR
 terminus connection:set $SITE_ENV sftp
 
 # Set the theme to TwentySeventeen
-terminus wp -- $SITE_ENV.$TERMINUS_ENV theme activate twentyseventeen
-terminus wp -- $SITE_ENV.$TERMINUS_ENV plugin install classic-editor
-terminus wp -- $SITE_ENV.$TERMINUS_ENV plugin activate classic-editor
+terminus wp -- $SITE_ENV theme activate twentyseventeen
+
+# Update WP core, plugins and themes to make sure we're 100% up-to-date.
+terminus wp -- $SITE_ENV core update
+terminus wp -- $SITE_ENV plugin update --all
+terminus wp -- $SITE_ENV theme update --all
+# Commit the changes to the fixture.
+terminus env:commit $SITE_ENV --message="Update WordPress core, plugins and themes"
+
+# Install and activate the classic editor.
+terminus wp -- $SITE_ENV plugin install classic-editor
+terminus wp -- $SITE_ENV plugin activate classic-editor
