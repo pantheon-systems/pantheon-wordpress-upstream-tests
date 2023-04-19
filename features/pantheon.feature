@@ -10,12 +10,12 @@ Feature: Perform Pantheon-specific actions
 
     When I fill in "pantheon-cache[default_ttl]" with "300"
     And I press "submit"
-    Then I should see "Settings saved."
+    Then I should see "Settings saved." in the ".notice" element
     And the "pantheon-cache[default_ttl]" field should contain "300"
 
     When I fill in "pantheon-cache[default_ttl]" with "600"
     And I press "submit"
-    Then I should see "Settings saved."
+    Then I should see "Settings saved." in the ".notice" element
     And the "pantheon-cache[default_ttl]" field should contain "600"
 
   Scenario: Clear the site cache
