@@ -4,7 +4,9 @@ Feature: Manage WordPress options
     Given I log in as an admin
 
   Scenario: Update the site tagline
-    When I go to "/"
+    When I go to "/wp-admin/themes.php?theme=twentytwenty"
+    And I press "Activate"
+    And I go to "/"
     Then I should see "Just another WordPress site" in the ".site-description" element
     And I should not see "Pantheon upstream testing site" in the ".site-description" element
 
