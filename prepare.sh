@@ -13,6 +13,8 @@ if [ -z "$TERMINUS_SITE" ] || [ -z "$TERMINUS_ENV" ]; then
 	exit 1
 fi
 
+terminus auth:login --machine-token=$TERMINUS_TOKEN
+
 ###
 # Create a new environment for this particular test run.
 ###
