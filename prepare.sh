@@ -45,3 +45,8 @@ rm -rf $PREPARE_DIR
 # Switch to SFTP mode so the site can install plugins and themes
 ###
 terminus connection:set $SITE_ENV sftp
+
+# Set the theme to TwentySeventeen
+terminus wp -- $SITE_ENV.$TERMINUS_ENV theme activate twentyseventeen
+terminus wp -- $SITE_ENV.$TERMINUS_ENV plugin install classic-editor
+terminus wp -- $SITE_ENV.$TERMINUS_ENV plugin activate classic-editor
