@@ -21,7 +21,7 @@ terminus upstream:updates:apply $TERMINUS_SITE.dev --accept-upstream
 ###
 # Switch to SFTP mode so the site can install plugins and themes
 ###
-terminus connection:set $SITE_ENV sftp
+terminus connection:set $TERMINUS_SITE.dev sftp
 
 # Update plugins and themes to make sure we're 100% up-to-date.
 terminus wp -- $SITE_ENV plugin update --all
