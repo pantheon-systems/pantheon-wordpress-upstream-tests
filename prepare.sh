@@ -16,7 +16,7 @@ fi
 terminus auth:login --machine-token=$TERMINUS_TOKEN
 
 # Apply any upstream updates (update WP core)
-terminus upstream:updates:apply
+terminus upstream:updates:apply $TERMINUS_SITE.dev --accept-upstream
 
 ###
 # Switch to SFTP mode so the site can install plugins and themes
