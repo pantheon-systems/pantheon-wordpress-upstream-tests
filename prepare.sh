@@ -24,10 +24,10 @@ terminus upstream:updates:apply $TERMINUS_SITE.dev --accept-upstream
 terminus connection:set $TERMINUS_SITE.dev sftp
 
 # Update plugins and themes to make sure we're 100% up-to-date.
-terminus wp -- $SITE_ENV plugin update --all
-terminus wp -- $SITE_ENV theme update --all
+terminus wp -- $TERMINUS_SITE.dev plugin update --all
+terminus wp -- $TERMINUS_SITE.dev theme update --all
 # Commit the changes to the fixture.
-terminus env:commit $SITE_ENV --message="Update WordPress core, plugins and themes"
+terminus env:commit $TERMINUS_SITE.dev --message="Update WordPress core, plugins and themes"
 
 ###
 # Create a new environment for this particular test run.
