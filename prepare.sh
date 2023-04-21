@@ -31,7 +31,7 @@ terminus connection:set $TERMINUS_SITE.dev sftp
 terminus wp -- $TERMINUS_SITE.dev plugin update --all
 terminus wp -- $TERMINUS_SITE.dev theme update --all
 # Commit the changes to the fixture.
-terminus env:commit $TERMINUS_SITE.dev --message="Update WordPress core, plugins and themes"
+terminus env:commit $TERMINUS_SITE.dev --message="Update WordPress plugins and themes"
 
 ###
 # Create a new environment for this particular test run.
