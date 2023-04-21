@@ -13,6 +13,10 @@ if [ -z "$TERMINUS_SITE" ] || [ -z "$TERMINUS_ENV" ]; then
 	exit 1
 fi
 
+# Duisable PasswordAuthentication on *.drush.in
+echo "Host *.drush.in
+	PasswordAuthentication no" >> ~/.ssh/config
+
 terminus auth:login --machine-token=$TERMINUS_TOKEN
 
 # Apply any upstream updates (update WP core)
