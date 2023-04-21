@@ -15,7 +15,7 @@ fi
 
 # Duisable PasswordAuthentication on *.drush.in
 echo "Host *.drush.in
-	PasswordAuthentication no" >> ~/.ssh/config
+	HostKeyAlgorithms +ssh-rsa" >> ~/.ssh/config
 
 terminus auth:login --machine-token=$TERMINUS_TOKEN
 
