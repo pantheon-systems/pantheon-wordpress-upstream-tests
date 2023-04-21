@@ -15,6 +15,20 @@ fi
 
 terminus auth:login --machine-token=$TERMINUS_TOKEN
 
+# Apply any upstream updates (update WP core)
+terminus upstream:updates:apply
+
+###
+# Switch to SFTP mode so the site can install plugins and themes
+###
+terminus connection:set $SITE_ENV sftp
+
+# Update plugins and themes to make sure we're 100% up-to-date.
+terminus wp -- $SITE_ENV plugin update --all
+terminus wp -- $SITE_ENV theme update --all
+# Commit the changes to the fixture.
+terminus env:commit $SITE_ENV --message="Update WordPress core, plugins and themes"
+
 ###
 # Create a new environment for this particular test run.
 ###
@@ -29,26 +43,5 @@ PANTHEON_SITE_URL="$TERMINUS_ENV-$TERMINUS_SITE.pantheonsite.io"
 PREPARE_DIR="/tmp/$TERMINUS_ENV-$TERMINUS_SITE"
 BASH_DIR="$( cd -P "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-###
-# Switch to git mode for pushing the files up
-###
-terminus connection:set $SITE_ENV git
 rm -rf $PREPARE_DIR
 # git clone -b $TERMINUS_ENV $PANTHEON_GIT_URL $PREPARE_DIR
-
-###
-# Push the upstream branch to the environment
-###
-
-
-###
-# Switch to SFTP mode so the site can install plugins and themes
-###
-terminus connection:set $SITE_ENV sftp
-
-# Update WP core, plugins and themes to make sure we're 100% up-to-date.
-terminus wp -- $SITE_ENV core update
-terminus wp -- $SITE_ENV plugin update --all
-terminus wp -- $SITE_ENV theme update --all
-# Commit the changes to the fixture.
-terminus env:commit $SITE_ENV --message="Update WordPress core, plugins and themes"
