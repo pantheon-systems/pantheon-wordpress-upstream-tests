@@ -37,7 +37,6 @@ terminus env:commit $TERMINUS_SITE.dev --message="Update WordPress plugins and t
 # Create a new environment for this particular test run.
 ###
 terminus env:create $TERMINUS_SITE.dev $TERMINUS_ENV
-terminus env:wipe $SITE_ENV --yes
 
 ###
 # Get all necessary environment details.
