@@ -5,10 +5,6 @@ Feature: Install WordPress through the web UI
     When I go to "/"
     Then print current URL
     And I should be on "/wp-admin/install.php"
-
-    When I press "language-continue"
-    Then print current URL
-    And I should be on "/wp-admin/install.php?step=1"
     And I should see "Welcome to the famous five-minute WordPress installation process!"
 
     When I fill in "weblog_title" with "Pantheon WordPress Upstream"
