@@ -37,6 +37,7 @@ terminus env:commit $TERMINUS_SITE.dev --message="Update WordPress plugins and t
 # Create a new environment for this particular test run.
 ###
 terminus env:create $TERMINUS_SITE.dev $TERMINUS_ENV
+terminus wp -- $TERMINUS_SITE.$TERMINUS_ENV theme activate twentyseventeen
 
 ###
 # Get all necessary environment details.
