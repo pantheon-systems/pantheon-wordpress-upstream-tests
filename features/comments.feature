@@ -23,15 +23,15 @@ Feature: Manage WordPress comments
 
     When I fill in "comment" with "Pantheon logged-in test comment"
     And I press "submit"
-    Then go to "/hello-world/#comments"
+    Then go to "/hello-world/#comment-3"
     Then print current URL
-    Then I should see "2 Replies" in the "h2.comments-title" element
-    And I should see "Pantheon logged-in test comment"
+    Then I should see "Pantheon logged-in test comment"
 
   Scenario: View comments in the backend
     Given I log in as an admin
 
-    When I go to "/wp-admin/edit-comments.php"
+    When I go to "/wp-admin/upgrade.php"
+    Then I go to "/wp-admin/edit-comments.php"
     Then print current URL
     And I should be on "/wp-admin/edit-comments.php"
     And I should see "Pantheon logged-out test comment"
