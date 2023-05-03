@@ -39,13 +39,13 @@ Feature: Install WordPress through the web UI
 
     When I press "submit"
     Then print current URL
-    And I should see "The selected plugin has been deleted." in the "#message" element
-    And I should see "1 item" in the ".displaying-num" element
+    And I should see "The selected plugin has been deleted."
+    And I should see "1 item" in the ".count" element
 
     When I follow "Delete"
     Then I should see "You are about to remove the following plugin:"
 
     When I press "submit"
     Then print current URL
-    And I should see "The selected plugin has been deleted." in the "#message" element
+    And I should see "The selected plugin has been deleted."
     And I should see "No plugins are currently available."
