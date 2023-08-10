@@ -53,4 +53,4 @@ Feature: Install WordPress through the web UI
     When I press "submit"
     Then print current URL
     And I should see "The selected plugin has been deleted." in the "#message" element
-    And I should see "You do not appear to have any plugins available at this time."
+    And I should see "No plugins are currently available."
