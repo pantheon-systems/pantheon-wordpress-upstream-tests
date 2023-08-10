@@ -1,7 +1,6 @@
 <?php
-// features/bootstrap/PantheonWordPressUpstreamContext.php
 
-namespace behat\features\bootstrap;
+namespace PantheonSystems\PantheonWordPressUpstreamTests\Behat;
 
 use Behat\Behat\Context\Context;
 
