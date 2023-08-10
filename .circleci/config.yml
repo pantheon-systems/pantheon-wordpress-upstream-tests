@@ -19,7 +19,7 @@ jobs:
     working_directory: ~/pantheon-systems/wordpress-upstream
     parallelism: 1
     docker:
-    - image: quay.io/pantheon-public/build-tools-ci:6.x
+    - image: quay.io/pantheon-public/build-tools-ci:8.x-php7.4
     steps:
     - checkout
     - run: echo -e "[Date]\ndate.timezone = UTC" | tee /usr/local/etc/php/php.ini > /dev/null
