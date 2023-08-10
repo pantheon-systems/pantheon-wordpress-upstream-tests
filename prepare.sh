@@ -38,7 +38,7 @@ rm -rf $PREPARE_DIR
 # Push the upstream branch to the environment
 ###
 
-
+terminus remote:wp -- theme activate twentyseventeen
 ###
 # Switch to SFTP mode so the site can install plugins and themes
 ###
