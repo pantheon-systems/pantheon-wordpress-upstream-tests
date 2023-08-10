@@ -31,9 +31,6 @@ Feature: Install WordPress through the web UI
     When I go to "/wp-admin/install.php"
     Then I should see "You appear to have already installed WordPress."
 
-  Scenario: Verify the active theme is Twenty Seventeen
-    When I go to "/"
-    Then the response should contain "<link rel='stylesheet' id='twentyseventeen-style-css'"
 
   @upstreamonly
   Scenario: Delete Akismet and Hello Dolly
