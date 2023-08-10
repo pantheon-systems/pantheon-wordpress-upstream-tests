@@ -51,6 +51,6 @@ jobs:
         terminus auth:login --machine-token=$TERMINUS_TOKEN
     - run: ./prepare.sh
     - run: ./test.sh --strict
-    - run:
-        command: ./cleanup.sh
-        when: always
+    # - run:
+    #     command: ./cleanup.sh
+    #     when: always
