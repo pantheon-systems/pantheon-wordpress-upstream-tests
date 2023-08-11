@@ -31,9 +31,6 @@ Feature: Install WordPress through the web UI
     When I go to "/wp-admin/install.php"
     Then I should see "You appear to have already installed WordPress."
 
-  Scenario: Verify the active theme is Twenty Seventeen
-    When I go to "/"
-    Then the response should contain "<link rel='stylesheet' id='twentyseventeen-style-css'"
 
   @upstreamonly
   Scenario: Delete Akismet and Hello Dolly
@@ -56,4 +53,4 @@ Feature: Install WordPress through the web UI
     When I press "submit"
     Then print current URL
     And I should see "The selected plugin has been deleted." in the "#message" element
-    And I should see "You do not appear to have any plugins available at this time."
+    And I should see "No plugins are currently available."

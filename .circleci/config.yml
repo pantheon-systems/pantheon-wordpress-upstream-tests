@@ -1,0 +1,56 @@
+version: 2
+workflows:
+  version: 2
+  main:
+    jobs:
+      - build
+  nightly:
+    triggers:
+      - schedule:
+          cron: "0 0 * * *"
+          filters:
+            branches:
+              only:
+                - master
+    jobs:
+      - build
+jobs:
+  build:
+    working_directory: ~/pantheon-systems/wordpress-upstream
+    parallelism: 1
+    docker:
+    - image: quay.io/pantheon-public/build-tools-ci:8.x-php7.4
+    steps:
+    - checkout
+    - run: echo -e "[Date]\ndate.timezone = UTC" | tee /usr/local/etc/php/php.ini > /dev/null
+    - run: echo $(openssl rand -hex 8) > /tmp/WORDPRESS_ADMIN_PASSWORD
+    - run: |
+        echo 'export TERMINUS_ENV=ci-$CIRCLE_BUILD_NUM' >> $BASH_ENV
+        echo 'export TERMINUS_SITE=wordpress-upstream' >> $BASH_ENV
+        echo 'export SITE_ENV=wordpress-upstream.ci-$CIRCLE_BUILD_NUM' >> $BASH_ENV
+        echo 'export WORDPRESS_ADMIN_USERNAME=pantheon' >> $BASH_ENV
+        echo 'export WORDPRESS_ADMIN_EMAIL=no-reply@getpantheon.com' >> $BASH_ENV
+        echo 'export WORDPRESS_ADMIN_PASSWORD=$(cat /tmp/WORDPRESS_ADMIN_PASSWORD)' >> $BASH_ENV
+        source $BASH_ENV
+    - run: echo "StrictHostKeyChecking no" >> "$HOME/.ssh/config"
+    - run: |
+        if [ -z "$GITHUB_TOKEN" ]; then
+          echo "GITHUB_TOKEN environment variables missing; assuming unauthenticated build"
+          exit 0
+        fi
+        echo "Setting GitHub OAuth token with suppressed ouput"
+        {
+          composer config -g github-oauth.github.com $GITHUB_TOKEN
+        } &> /dev/null
+    - run: |
+        if [ -z "$TERMINUS_TOKEN" ]; then
+          echo "TERMINUS_TOKEN environment variables missing; assuming unauthenticated build"
+          exit 0
+        fi
+        composer install --prefer-dist
+        terminus auth:login --machine-token=$TERMINUS_TOKEN
+    - run: ./prepare.sh
+    - run: ./test.sh --strict
+    - run:
+        command: ./cleanup.sh
+        when: always
