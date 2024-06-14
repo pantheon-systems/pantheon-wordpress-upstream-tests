@@ -4,4 +4,3 @@ Feature: Verify various Pantheon features as a logged-out user
     When I go to "/"
     And the response header "Cache-Control" should be "public, max-age=604800"
     And the response header "Pragma" should not contain "no-cache"
-
