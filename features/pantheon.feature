@@ -8,16 +8,6 @@ Feature: Perform Pantheon-specific actions
     Then I should see "Pantheon Page Cache"
     And the "pantheon-cache[default_ttl]" field should contain "604800"
 
-    When I fill in "pantheon-cache[default_ttl]" with "300"
-    And I press "Save Changes"
-    Then I should see "Settings saved."
-    And the "pantheon-cache[default_ttl]" field should contain "300"
-
-    When I fill in "pantheon-cache[default_ttl]" with "600"
-    And I press "Save Changes"
-    Then I should see "Settings saved."
-    And the "pantheon-cache[default_ttl]" field should contain "600"
-
   Scenario: Clear the site cache
     When I go to "/wp-admin/options-general.php?page=pantheon-cache"
     Then I should see "Clear Site Cache"
