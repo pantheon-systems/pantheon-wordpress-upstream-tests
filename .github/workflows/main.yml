@@ -1,0 +1,85 @@
+name: Build & Test (WordPress Upstream)
+
+on:
+  pull_request:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 0 * * *"  # nightly
+
+jobs:
+  build:
+    # Run nightly only on master; run on all other events unconditionally
+    if: github.event_name != 'schedule' || github.ref_name == 'master'
+    runs-on: ubuntu-latest
+
+    container:
+      image: quay.io/pantheon-public/build-tools-ci:8.x-php7.4
+      options: --user root
+
+    permissions:
+      contents: read
+
+    defaults:
+      run:
+        shell: bash
+        working-directory: ${{ github.workspace }}
+
+    env:
+      # Provide the built-in GitHub token (if needed by Composer step)
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # Terminus machine token, add in repo/org secrets
+      TERMINUS_TOKEN: ${{ secrets.TERMINUS_TOKEN }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set PHP timezone to UTC
+        run: echo -e "[Date]\ndate.timezone = UTC" | tee /usr/local/etc/php/php.ini > /dev/null
+
+      - name: Generate random WP admin password
+        run: echo "$(openssl rand -hex 8)" > /tmp/WORDPRESS_ADMIN_PASSWORD
+
+      - name: Export environment (CircleCI parity)
+        run: |
+          {
+            echo "TERMINUS_ENV=ci-${GITHUB_RUN_NUMBER}"
+            echo "TERMINUS_SITE=wordpress-upstream"
+            echo "SITE_ENV=wordpress-upstream.ci-${GITHUB_RUN_NUMBER}"
+            echo "WORDPRESS_ADMIN_USERNAME=pantheon"
+            echo "WORDPRESS_ADMIN_EMAIL=no-reply@getpantheon.com"
+            echo "WORDPRESS_ADMIN_PASSWORD=$(cat /tmp/WORDPRESS_ADMIN_PASSWORD)"
+          } >> "$GITHUB_ENV"
+
+      - name: Disable strict host key checking for SSH
+        run: |
+          mkdir -p "$HOME/.ssh"
+          echo "StrictHostKeyChecking no" >> "$HOME/.ssh/config"
+
+      - name: Configure Composer GitHub OAuth (if token present)
+        run: |
+          if [ -z "${GITHUB_TOKEN}" ]; then
+            echo "GITHUB_TOKEN missing; assuming unauthenticated build"
+            exit 0
+          fi
+          echo "Setting GitHub OAuth token with suppressed output"
+          { composer config -g github-oauth.github.com "${GITHUB_TOKEN}"; } &> /dev/null
+
+      - name: Install deps & Terminus login (if token present)
+        run: |
+          if [ -z "${TERMINUS_TOKEN}" ]; then
+            echo "TERMINUS_TOKEN missing; assuming unauthenticated build"
+            exit 0
+          fi
+          composer install --prefer-dist
+          terminus auth:login --machine-token="${TERMINUS_TOKEN}"
+
+      - name: Prepare
+        run: ./prepare.sh
+
+      - name: Test (strict)
+        run: ./test.sh --strict
+
+      - name: Cleanup (always)
+        if: always()
+        run: ./cleanup.sh
