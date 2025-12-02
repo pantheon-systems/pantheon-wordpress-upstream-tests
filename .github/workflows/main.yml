@@ -32,7 +32,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
 
       - name: Set PHP timezone to UTC
         run: echo -e "[Date]\ndate.timezone = UTC" | tee /usr/local/etc/php/php.ini > /dev/null
