@@ -10,7 +10,7 @@ Feature: Manage WordPress plugins
     Then print current URL
     Then I should see "Hello Dolly" in the "#plugin-information-title" element
 
-    When I follow "Install Now"
+    When I press "Install Now"
     Then print current URL
     And I should see "Successfully installed the plugin Hello Dolly"
 
