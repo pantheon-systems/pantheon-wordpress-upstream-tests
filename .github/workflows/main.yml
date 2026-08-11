@@ -25,8 +25,6 @@ jobs:
         working-directory: ${{ github.workspace }}
 
     env:
-      # Provide the built-in GitHub token (if needed by Composer step)
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       # Terminus machine token, add in repo/org secrets
       TERMINUS_TOKEN: ${{ secrets.TERMINUS_TOKEN }}
 
@@ -56,22 +54,15 @@ jobs:
           mkdir -p "$HOME/.ssh"
           echo "StrictHostKeyChecking no" >> "$HOME/.ssh/config"
 
-      - name: Configure Composer GitHub OAuth (if token present)
-        run: |
-          if [ -z "${GITHUB_TOKEN}" ]; then
-            echo "GITHUB_TOKEN missing; assuming unauthenticated build"
-            exit 0
-          fi
-          echo "Setting GitHub OAuth token with suppressed output"
-          { composer config -g github-oauth.github.com "${GITHUB_TOKEN}"; } &> /dev/null
+      - name: Install Composer dependencies
+        run: composer install --prefer-dist
 
-      - name: Install deps & Terminus login (if token present)
+      - name: Terminus login (if token present)
         run: |
           if [ -z "${TERMINUS_TOKEN}" ]; then
             echo "TERMINUS_TOKEN missing; assuming unauthenticated build"
             exit 0
           fi
-          composer install --prefer-dist
           terminus auth:login --machine-token="${TERMINUS_TOKEN}"
 
       - name: Prepare
