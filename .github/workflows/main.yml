@@ -62,8 +62,21 @@ jobs:
             echo "GITHUB_TOKEN missing; assuming unauthenticated build"
             exit 0
           fi
+          # Strip any whitespace/newlines: Composer rejects a token containing
+          # them ("contains invalid characters"), and because the failure lands
+          # in the *next* composer command it reads as an unrelated install error.
+          TOKEN="$(printf '%s' "${GITHUB_TOKEN}" | tr -d '[:space:]')"
+          if [ -z "${TOKEN}" ]; then
+            echo "GITHUB_TOKEN is only whitespace; assuming unauthenticated build"
+            exit 0
+          fi
           echo "Setting GitHub OAuth token with suppressed output"
-          { composer config -g github-oauth.github.com "${GITHUB_TOKEN}"; } &> /dev/null
+          # Redirect output to keep the token out of the log, but do not swallow
+          # the exit status -- a silent failure here breaks the install step later.
+          if ! composer config -g github-oauth.github.com "${TOKEN}" > /dev/null 2>&1; then
+            echo "Failed to set GitHub OAuth token"
+            exit 1
+          fi
 
       - name: Install deps & Terminus login (if token present)
         run: |
