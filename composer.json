@@ -14,5 +14,10 @@
   },
   "autoload": {
     "psr-4": { "PantheonSystems\\PantheonWordPressUpstreamTests\\Behat\\": "features/bootstrap/" }
+  },
+  "config": {
+    "platform": {
+      "php": "7.4.33"
+    }
   }
 }
