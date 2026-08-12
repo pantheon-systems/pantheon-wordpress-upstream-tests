@@ -45,4 +45,36 @@ class AdminLogIn implements Context, SnippetAcceptingContext {
     {
         $this->minkContext->fillField($field, getenv($value));
     }
+
+    /**
+     * Submits the form matching a CSS selector, without pressing a button.
+     *
+     * Example: When I submit the ".wrap form" form
+     *
+     * Needed on wp-admin settings pages under the browserkit driver. The
+     * site icon block in wp-admin/options-general.php emits one more
+     * </div> than it opens. The HTML5 parser that DomCrawler now uses
+     * (masterminds/html5) unwinds past the enclosing <form> to balance
+     * that, so the submit button is reparented outside the form and the
+     * driver throws "The selected node does not have a form ancestor".
+     * The goutte driver parsed with libxml, which tolerated the
+     * imbalance, so a plain `I press` worked before the driver swap.
+     *
+     * Note that scoping a button lookup to the form does not help: once
+     * the button is reparented it is no longer a descendant of the form.
+     * Submitting the form element itself does work, and the form still
+     * carries its own fields.
+     *
+     * @When I submit the :element form
+     */
+    public function submitFormElement($element)
+    {
+        $form = $this->minkContext->getSession()->getPage()->find('css', $element);
+
+        if (null === $form) {
+            throw new \Exception(sprintf('Form "%s" not found on the page.', $element));
+        }
+
+        $form->submit();
+    }
 }
