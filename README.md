@@ -3,6 +3,8 @@
 Runs a Behat-based test suite against a given branch of the [Pantheon WordPress upstream](https://github.com/pantheon-systems/wordpress) on [Pantheon](https://pantheon.io/) infrastructure to ensure the branch is fully functional on Pantheon.
 
 [![CircleCI](https://circleci.com/gh/pantheon-systems/pantheon-wordpress-upstream-tests.svg?style=svg)](https://circleci.com/gh/pantheon-systems/pantheon-wordpress-upstream-tests)
+[![Unsupported](https://img.shields.io/badge/Pantheon-Unsupported-yellow?logo=pantheon&color=FFDC28)](https://pantheon.io/docs/oss-support-levels#unsupported)
+
 
 ## How It Works
 
