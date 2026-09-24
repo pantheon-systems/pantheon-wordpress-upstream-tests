@@ -1,12 +1,13 @@
+# Managed by github-terraform — do not edit manually
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: pantheon-wordpress-upstream-tests
-  description: Auto-generated catalog info for pantheon-systems/pantheon-wordpress-upstream-tests
+  name: "pantheon-wordpress-upstream-tests"
+  description: "Tests behavior of WordPress Core upstreams for Pantheon. Also within test suites of contrib plugins"
   annotations:
-    backstage.io/techdocs-ref: dir:docs/
+    "backstage.io/techdocs-ref": "dir:docs/"
 spec:
-  type: library
-  lifecycle: mature
-  owner: site-experience
+  type: "library"
+  lifecycle: "mature"
+  owner: "site-experience"
