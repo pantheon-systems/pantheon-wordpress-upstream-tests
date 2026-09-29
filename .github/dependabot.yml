@@ -17,3 +17,18 @@ updates:
         patterns: ["*"]
     labels: ["dependencies", "github-actions"]
     rebase-strategy: "auto"
+
+  # PHP / Composer
+  - package-ecosystem: "composer"
+    directories: ["/**"]
+    schedule:
+      interval: "weekly"
+      day: "sunday"
+      time: "06:00"
+      timezone: "UTC"
+    open-pull-requests-limit: 5
+    groups:
+      composer-deps:
+        patterns: ["*"]
+    labels: ["dependencies", "composer"]
+    rebase-strategy: "auto"
