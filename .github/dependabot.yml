@@ -11,24 +11,47 @@ updates:
       day: "sunday"
       time: "06:00"
       timezone: "UTC"
+    cooldown:
+      default-days: 3
     open-pull-requests-limit: 5
+    # Minor/patch grouped; majors match no version group → one PR each.
     groups:
       actions:
+        applies-to: version-updates
         patterns: ["*"]
+        update-types: ["minor", "patch"]
+      actions-security:
+        applies-to: security-updates
+        patterns: ["*"]
+    commit-message:
+      prefix: "chore"
+      include: "scope"
     labels: ["dependencies", "github-actions"]
     rebase-strategy: "auto"
 
   # PHP / Composer
   - package-ecosystem: "composer"
     directories: ["/**"]
+    exclude-paths: ["devops/make/**", "**/devops/make/**"]  # vendored common-makefiles; synced by update-common-makefiles
     schedule:
       interval: "weekly"
       day: "sunday"
       time: "06:00"
       timezone: "UTC"
+    cooldown:
+      default-days: 3
     open-pull-requests-limit: 5
+    # Minor/patch grouped; majors match no version group → one PR each.
     groups:
       composer-deps:
+        applies-to: version-updates
         patterns: ["*"]
+        update-types: ["minor", "patch"]
+      composer-security:
+        applies-to: security-updates
+        patterns: ["*"]
+    commit-message:
+      prefix: "chore"
+      include: "scope"
     labels: ["dependencies", "composer"]
     rebase-strategy: "auto"
